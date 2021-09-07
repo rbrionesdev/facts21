@@ -26,13 +26,25 @@ const Facts = (props) => {
       console.log(error);
     }
   };
+
+  const deleteFact = async (id) => {
+    try {
+      let res = await axios.delete(`/api/facts/${id}`);
+      let filterFacts = facts.filter((f) => f.id !== id);
+      setFacts(filterFacts);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const updateFact = (fact) => {
     let updatedFacts = facts.map((f) => (f.id == fact.id ? fact : f));
     setFacts(updatedFacts);
   };
 
   const renderFacts = () => {
-    return facts.map((f) => <Fact updateFact={updateFact} key={f.id} {...f} />);
+    return facts.map((f) => (
+      <Fact deleteFact={deleteFact} updateFact={updateFact} key={f.id} {...f} />
+    ));
   };
   return (
     <div>
