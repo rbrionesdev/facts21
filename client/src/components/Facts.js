@@ -22,7 +22,7 @@ const Facts = (props) => {
       // console.log(res);
       console.log("facts here in res.data:", res.data);
     } catch (error) {
-      alert("err occured getting fact check console/server");
+      alert("err occured getting fact check conosle/server");
       console.log(error);
     }
   };
@@ -37,6 +37,7 @@ const Facts = (props) => {
   return (
     <div>
       <h1>Facts</h1>
+      <div onClick={() => props.history.push("/facts/new")}>New Fact</div>
       <div>{renderFacts()}</div>
     </div>
   );

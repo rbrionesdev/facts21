@@ -1,8 +1,10 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const Fact = ({ id, text, stars, username, source, updateFact }) => {
+  const history = useHistory();
   const handleStarClick = async (newValue) => {
     console.log(`Example 2: new value is ${newValue}`);
     // axios call. to db stop fe here....
@@ -27,6 +29,7 @@ const Fact = ({ id, text, stars, username, source, updateFact }) => {
       <div style={styles.info}>
         <a href={source}>{source}</a>
         <ReactStars {...firstExample} />
+        <div onClick={() => history.push(`/facts/${id}/edit`)}>edit</div>
       </div>
     </div>
   );
